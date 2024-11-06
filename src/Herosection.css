@@ -1,0 +1,75 @@
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: #f5f7fa; /* Light background color */
+    position: relative;
+    height: 100vh; /* Full height */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .hero-text {
+    max-width: 60%;
+    z-index: 2;
+  }
+  
+  .hero-text h1 {
+    font-family: 'Maven Pro', sans-serif; /* Use Maven Pro font */
+    font-size: 2.5rem;
+    color: #4a752c; /* Dark green */
+    margin-bottom: 1rem;
+  }
+  
+  .hero-text p {
+    font-size: 1.1rem;
+    color: #4b4b4b; /* Dark gray */
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-text blockquote p {
+    font-size: 1.1rem;
+    font-family: exo;
+    color: #af7b1a; /* Red color */
+    border-left: 4px solid #ccc;
+    padding-left: 1rem;
+    margin-top: 1rem;
+    font-style: italic;
+  }
+  
+  .hero-video {
+    position: absolute;
+    top: 0; /* Move video to the top */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    /* z-index: 0; Ensure video stays behind text */
+    width: 80%; /* Set video width */
+    height: 50%; /* Reduced height */
+  }
+  
+  .hero-video video {
+    width: 40%; /* Ensure full width */
+    height: 200%; /* Ensure full height */
+    object-fit: cover;
+    margin-left: 850px;
+    border-radius: 20PX;
+
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .hero-video {
+      width: 90%; /* Adjust width for mobile */
+      height: 40vh; /* Reduced height for mobile */
+    }
+  
+    .hero-text {
+      max-width: 100%;
+    }
+  }
+  

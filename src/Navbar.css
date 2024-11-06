@@ -1,0 +1,120 @@
+/* Import Maven Pro font */
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700&display=swap');
+
+/* General navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  background: rgba(245, 247, 250, 0.85); /* Semi-transparent for glass effect */
+  backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
+  color: #63854c;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
+  margin: 1rem auto;
+  max-width: 1200px;
+}
+
+/* Logo styling */
+.navbar-logo h1 {
+  font-size: 1.8rem;
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 700;
+  color: #4a752c;
+  background: linear-gradient(135deg, #4a752c, #af7b1a); /* Subtle gradient in logo text */
+  -webkit-background-clip: text;
+  color: transparent; /* Show gradient only */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Link list styling */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar-links li a {
+  color: #d7aa08;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar-links li a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #d7aa08;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.navbar-links li a:hover::before {
+  transform: scaleX(1); /* Expand background on hover */
+}
+
+.navbar-links li a:hover {
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Order Now button styling */
+.order-now-button {
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, #63854c, #4a752c);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.order-now-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: opacity 0.3s, transform 0.3s ease;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+  z-index: 1;
+}
+
+.order-now-button:hover::before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1); /* Ripple effect on hover */
+}
+
+.order-now-button:hover {
+  background-color: #2e481c;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive styling for mobile */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1.2rem;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}

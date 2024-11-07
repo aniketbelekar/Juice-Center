@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 2rem;
-    background-color: #f5f7fa; /* Light background color */
+    background-color:#EFF3E9; /* Light background color */
     position: relative;
     height: 100vh; /* Full height */
     border-radius: 10px; /* Rounded corners */
@@ -40,12 +40,12 @@
   
   .hero-video {
     position: absolute;
-    top: 0; /* Move video to the top */
+    top: 80px; /* Move video to the top */
     left: 50%;
     transform: translateX(-50%); /* Center horizontally */
     /* z-index: 0; Ensure video stays behind text */
     width: 80%; /* Set video width */
-    height: 50%; /* Reduced height */
+    height: 40%; /* Reduced height */
   }
   
   .hero-video video {

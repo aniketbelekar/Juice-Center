@@ -1,33 +1,23 @@
-/* Import Maven Pro font */
-@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700&display=swap');
-
-/* General navbar styling */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2.5rem;
-  background: rgba(245, 247, 250, 0.85); /* Semi-transparent for glass effect */
-  backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
+  padding: 1rem 2rem;
+  background-color: #EFF3E9;
   color: #63854c;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
-  margin: 1rem auto;
-  max-width: 1200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin: 1rem;
+  border-radius: 10px;
 }
 
-/* Logo styling */
 .navbar-logo h1 {
   font-size: 1.8rem;
   font-family: 'Maven Pro', sans-serif;
   font-weight: 700;
   color: #4a752c;
-  background: linear-gradient(135deg, #4a752c, #af7b1a); /* Subtle gradient in logo text */
-  -webkit-background-clip: text;
-  color: transparent; /* Show gradient only */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-/* Link list styling */
 .navbar-links {
   list-style: none;
   display: flex;
@@ -35,81 +25,61 @@
 }
 
 .navbar-links li a {
-  color: #d7aa08;
+  color: black;
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 500;
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 1rem;
   transition: all 0.3s ease;
+  border-radius: 8px;
   position: relative;
-  overflow: hidden;
-}
-
-.navbar-links li a::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #d7aa08;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-  z-index: -1;
-}
-
-.navbar-links li a:hover::before {
-  transform: scaleX(1); /* Expand background on hover */
 }
 
 .navbar-links li a:hover {
+  background-color: #d7aa08;
   color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Order Now button styling */
 .order-now-button {
-  padding: 0.6rem 1.2rem;
+  padding: 0.5rem 1rem;
   background: linear-gradient(135deg, #63854c, #4a752c);
   color: white;
+  border-radius: 8px;
   font-weight: bold;
   text-transform: uppercase;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.order-now-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 300%;
-  height: 300%;
-  background: rgba(255, 255, 255, 0.2);
-  transition: opacity 0.3s, transform 0.3s ease;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.5);
-  z-index: 1;
-}
-
-.order-now-button:hover::before {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1); /* Ripple effect on hover */
 }
 
 .order-now-button:hover {
-  background-color: #2e481c;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  color: #4a752c;
 }
 
-/* Responsive styling for mobile */
+.cart-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff3b30;
+  color: white;
+  font-size: 1rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
-    padding: 1.2rem;
+    padding: 1rem;
   }
 
   .navbar-links {

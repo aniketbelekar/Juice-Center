@@ -1,0 +1,128 @@
+/* Benefits Section Styling */
+.benefits-section {
+    background-color: #f9f9f9;
+    padding: 40px;
+    max-width: 800px;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.benefits-section h2 {
+    color: #2f602f; /* Green color for title */
+    font-size: 2.2rem; /* Scalable font size */
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Maven Pro', sans-serif;
+}
+
+.benefits-description {
+    color: #d9a324;
+    font-size: 1.2rem; /* Scalable font size */
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-family: 'Maven Pro', sans-serif;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 600px; /* Restrict width for better readability */
+    font-size: 1.1rem;
+    line-height: 1.6; /* Enhanced readability */
+    font-family: 'Exo', sans-serif;
+    text-align: left; /* Align list to the left */
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1rem; /* Scalable font size */
+    line-height: 1.4;
+}
+
+.benefit-icon {
+    color: #4a752c; /* Green color for check mark */
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.benefit-item:hover {
+    background-color: #e8f1e8; /* Light green hover effect */
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .benefits-section {
+        padding: 30px; /* Adjust padding */
+    }
+
+    .benefits-section h2 {
+        font-size: 2rem; /* Adjust heading size */
+    }
+
+    .benefits-description {
+        font-size: 1.1rem; /* Adjust description size */
+    }
+
+    .benefits-list {
+        max-width: 100%; /* Full width on medium screens */
+    }
+
+    .benefit-item {
+        font-size: 1rem; /* Adjust list item size */
+    }
+}
+
+@media (max-width: 768px) {
+    .benefits-section {
+        padding: 20px; /* Compact padding for smaller screens */
+        margin: 20px 10px;
+    }
+
+    .benefits-section h2 {
+        font-size: 1.8rem; /* Reduce heading size */
+    }
+
+    .benefits-description {
+        font-size: 1rem; /* Reduce description size */
+    }
+
+    .benefit-item {
+        font-size: 0.95rem; /* Reduce list item size */
+    }
+
+    .benefit-icon {
+        font-size: 1.3rem; /* Reduce icon size */
+    }
+}
+
+@media (max-width: 480px) {
+    .benefits-section {
+        padding: 15px; /* Minimal padding */
+    }
+
+    .benefits-section h2 {
+        font-size: 1.5rem; /* Compact heading */
+    }
+
+    .benefits-description {
+        font-size: 0.9rem; /* Compact description */
+    }
+
+    .benefit-item {
+        font-size: 0.85rem; /* Compact list item */
+    }
+
+    .benefit-icon {
+        font-size: 1.2rem; /* Compact icon */
+    }
+}

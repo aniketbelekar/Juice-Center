@@ -1,0 +1,147 @@
+/* Container styling */
+.contact-section {
+  margin: 50px auto;
+  max-width: 600px;
+  padding: 30px; /* Increased padding for better spacing */
+  background-color: #f9f8f4; /* Softer beige background */
+  border: 1px solid #d9d2c3; /* Lighter beige border for subtle contrast */
+  border-radius: 15px; /* Rounded corners for a modern feel */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  margin-right: 50%; /* Adjusted for better centering on wider screens */
+  margin-top: 20px;
+}
+
+/* Title styling */
+.contact-title {
+  font-size: 1.8rem; /* Slightly larger for prominence */
+  color: #4d7a3b; /* Deeper green for better readability */
+  margin-bottom: 25px;
+  font-weight: bold; /* Bolder font for emphasis */
+}
+
+/* Form styling */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1rem;
+  color: #4d7a3b; /* Consistent green tone */
+  margin-bottom: 10px; /* Increased spacing for better readability */
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px; /* Increased padding for a cleaner input area */
+  font-size: 1rem;
+  border: 1px solid #c7bfae; /* Lighter border for a softer look */
+  border-radius: 10px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #4d7a3b; /* Green highlight on focus */
+  box-shadow: 0 0 8px rgba(77, 122, 59, 0.5); /* Slightly more prominent green shadow */
+  outline: none; /* Remove default blue outline */
+}
+
+
+.form-group textarea {
+  min-height: 150px; /* Slightly taller text area */
+  resize: vertical;
+}
+
+/* Submit button styling */
+.contact-submit {
+  background-color: #5c9d4e; /* Refined sugarcane green */
+  color: white;
+  padding: 14px 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px; /* Rounded corners for a more modern look */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.contact-submit:hover {
+  background-color: #47793a; /* Darker green on hover */
+  transform: scale(1.05);
+}
+
+.contact-submit:active {
+  transform: scale(0.97);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 90%;
+  }
+
+  .contact-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .contact-form {
+    gap: 15px;
+  }
+
+  .form-group label {
+    font-size: 1rem;
+  }
+
+  .contact-submit {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Additional improvements for email section */
+.email-section {
+  margin-top: 30px;
+  text-align: center;
+  background: #fffdfb; /* Slightly off-white for contrast */
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.email-section h3 {
+  color: #4d7a3b;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.email-section p {
+  color: #5a8453;
+  font-size: 1rem;
+}
+
+.email-link {
+  color: #5c9d4e;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.email-link:hover {
+  text-decoration: underline;
+  color: #47793a;
+}

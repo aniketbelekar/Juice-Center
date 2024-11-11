@@ -1,75 +1,127 @@
 .hero-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2rem;
-    background-color:#EFF3E9; /* Light background color */
-    position: relative;
-    height: 100vh; /* Full height */
-    border-radius: 10px; /* Rounded corners */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: #EFF3E9; /* Light background color */
+  position: relative;
+  height: 100vh; /* Full height */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Ensure no overflow issues */
+}
+
+/* Text Content Styling */
+.hero-text {
+  max-width: 50%; /* Take half of the screen */
+  z-index: 2;
+}
+
+.hero-text h1 {
+  font-family: 'Maven Pro', sans-serif; /* Use Maven Pro font */
+  font-size: 3rem; /* Larger for larger screens */
+  color: #4a752c; /* Dark green */
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.2rem; /* Slightly larger font size */
+  color: #4b4b4b; /* Dark gray */
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-family: 'Readex Pro', sans-serif;
+}
+
+.hero-text blockquote p {
+  font-size: 1.1rem;
+  font-family: 'Exo', sans-serif;
+  color: #af7b1a; /* Red color */
+  border-left: 4px solid #ccc;
+  padding-left: 1rem;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* Video Styling */
+.hero-video {
+  position: relative;
+  width: 45%; /* Set video width */
+  height: auto; /* Maintain aspect ratio */
+  z-index: 1; /* Ensure video stays behind text */
+  border-radius: 20px;
+  overflow: hidden; /* Ensure no overflow */
+}
+
+.hero-video video {
+  width: 100%; /* Fit container width */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column-reverse; /* Stack video below text */
+    text-align: center;
+    height: auto; /* Allow height to adjust dynamically */
+    padding: 1rem;
   }
-  
+
   .hero-text {
-    max-width: 60%;
-    z-index: 2;
-  }
-  
-  .hero-text h1 {
-    font-family: 'Maven Pro', sans-serif; /* Use Maven Pro font */
-    font-size: 2.5rem;
-    color: #4a752c; /* Dark green */
+    max-width: 100%; /* Full width for text */
     margin-bottom: 1rem;
   }
-  
-  .hero-text p {
-    font-size: 1.1rem;
-    color: #4b4b4b; /* Dark gray */
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-  
-  .hero-text blockquote p {
-    font-size: 1.1rem;
-    font-family: exo;
-    color: #af7b1a; /* Red color */
-    border-left: 4px solid #ccc;
-    padding-left: 1rem;
-    margin-top: 1rem;
-    font-style: italic;
-  }
-  
-  .hero-video {
-    position: absolute;
-    top: 80px; /* Move video to the top */
-    left: 50%;
-    transform: translateX(-50%); /* Center horizontally */
-    /* z-index: 0; Ensure video stays behind text */
-    width: 80%; /* Set video width */
-    height: 40%; /* Reduced height */
-  }
-  
-  .hero-video video {
-    width: 40%; /* Ensure full width */
-    height: 200%; /* Ensure full height */
-    object-fit: cover;
-    margin-left: 850px;
-    border-radius: 20PX;
 
+  .hero-text h1 {
+    font-size: 2.2rem; /* Adjust font size */
   }
-  
-  @media (max-width: 768px) {
-    .hero-section {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .hero-video {
-      width: 90%; /* Adjust width for mobile */
-      height: 40vh; /* Reduced height for mobile */
-    }
-  
-    .hero-text {
-      max-width: 100%;
-    }
+
+  .hero-text p {
+    font-size: 1rem; /* Adjust font size */
   }
-  
+
+  .hero-video {
+    width: 80%; /* Adjust video size */
+    height: 50vh; /* Reduced height */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column-reverse; /* Stack video below text */
+    height: auto; /* Adjust height dynamically */
+  }
+
+  .hero-text h1 {
+    font-size: 1.8rem; /* Adjust for smaller screens */
+  }
+
+  .hero-text p {
+    font-size: 1rem; /* Adjust font size */
+  }
+
+  .hero-video {
+    width: 90%; /* Increase video width for smaller screens */
+    height: 40vh; /* Further reduce video height */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 1rem; /* Reduce padding for very small screens */
+  }
+
+  .hero-text h1 {
+    font-size: 1.5rem; /* Smaller font size */
+  }
+
+  .hero-text p {
+    font-size: 0.9rem; /* Smaller font size */
+  }
+
+  .hero-video {
+    width: 100%; /* Full width for video */
+    height: auto; /* Maintain aspect ratio */
+  }
+}

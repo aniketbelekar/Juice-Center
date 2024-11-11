@@ -1,4 +1,10 @@
 /* Cart Section */
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+html {
+  scroll-behavior: smooth;
+}
+
+
 .cart-summary {
     position: absolute;
     top: 50px;
@@ -11,8 +17,9 @@
     overflow-y: auto;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     z-index: 10;
-    background: linear-gradient(135deg, #a4c639, #6a9a3e); /* Soft gradient background */
+    background: linear-gradient(135deg, #a4c639, #6a9a3e);
     color: #fff;
+    transition: all 0.3s ease;
   }
   
   .cart-summary-header {
@@ -50,7 +57,7 @@
     justify-content: space-between;
     padding: 12px;
     margin: 10px 0;
-    background: rgba(255, 255, 255, 0.2); /* Subtle background for each item */
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     font-family: 'Roboto', sans-serif;
     color: #fff;
@@ -89,7 +96,7 @@
   .order-confirm-button {
     width: 100%;
     padding: 15px;
-    background: linear-gradient(135deg, #9bc53d, #6d9e2e); /* Green gradient for the button */
+    background: linear-gradient(135deg, #9bc53d, #6d9e2e);
     border: none;
     border-radius: 30px;
     font-weight: bold;
@@ -109,6 +116,23 @@
     color: #fff;
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Increase Quantity Button */
+  .increase-quantity-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 6px 12px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .increase-quantity-button:hover {
+    background-color: #45a049;
   }
   
   /* Responsive Design */
@@ -131,5 +155,249 @@
     .order-confirm-button {
       padding: 12px;
     }
+  
+    .increase-quantity-button {
+      padding: 4px 8px;
+      font-size: 1em;
+    }
+  }
+  /* Decrease Quantity Button */
+.decrease-quantity-button {
+    background-color: #f44336;
+    color: white;
+    padding: 6px 12px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
   }
   
+  .decrease-quantity-button:hover {
+    background-color: #e53935;
+  }
+  
+  .decrease-quantity-button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  /* Increase Quantity Button */
+  .increase-quantity-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 6px 12px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .increase-quantity-button:hover {
+    background-color: #45a049;
+  }
+  /* Decrease Quantity Button */
+.decrease-quantity-button {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Roboto', sans-serif;
+    margin: 0 5px; /* Add space between + and - buttons */
+  }
+  
+  .decrease-quantity-button:hover {
+    background-color: #e53935;
+    transform: scale(1.1);
+  }
+  
+  .decrease-quantity-button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  /* Increase Quantity Button */
+  .increase-quantity-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Roboto', sans-serif;
+    margin: 0 5px; /* Add space between + and - buttons */
+  }
+  
+  .increase-quantity-button:hover {
+    background-color: #45a049;
+    transform: scale(1.1);
+  }
+  
+  /* Quantity Display */
+  .quantity-display {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin: 0 10px;
+    display: inline-block;
+  }
+  
+  /* Cart Item List */
+  .cart-summary ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    align-items: center;
+  }
+  
+  /* Ensure buttons are aligned well */
+  .cart-summary ul li div {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .cart-summary {
+      width: 90%;
+      max-width: 400px;
+      top: 100px;
+      right: 10px;
+    }
+  
+    .cart-summary-header h3 {
+      font-size: 1.5em;
+    }
+  
+    .cart-summary ul li {
+      font-size: 1em;
+      flex-direction: column; /* Stack items vertically on smaller screens */
+      align-items: flex-start;
+    }
+  
+    .increase-quantity-button,
+    .decrease-quantity-button {
+      padding: 4px 8px; /* Reduce padding on smaller screens */
+      font-size: 1em; /* Reduce font size */
+    }
+  
+    .quantity-display {
+      font-size: 1.1em;
+    }
+  }
+  /* Add this to your CSS file */
+.order-confirmation-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745; /* Green background for success */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    animation: fadeOut 5s forwards;
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+    }
+  }
+  /* Add this to your CSS file */
+.order-confirmation-message {
+    position: fixed;
+    bottom: 20px; /* Position the message at the bottom */
+    left: 50%; /* Center the message horizontally */
+    transform: translateX(-50%); /* Correct centering */
+    background-color: #28a745; /* Green background for success */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    animation: fadeOut 5s forwards;
+  }
+  
+  /* Animation to fade out the message after 5 seconds */
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+    }
+  }
+  
+  .order-confirmation-message i {
+    font-size: 20px; /* FontAwesome icon size */
+  }
+  /* Increase Quantity Button */
+.increase-quantity-button,
+.decrease-quantity-button {
+  padding: 5px 10px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  margin: 0 5px; /* Add space between + and - buttons */
+}
+
+.increase-quantity-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.increase-quantity-button:hover {
+  background-color: #45a049;
+  transform: scale(1.1);
+}
+
+.decrease-quantity-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.decrease-quantity-button:hover {
+  background-color: #e53935;
+  transform: scale(1.1);
+}
+
+.decrease-quantity-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}

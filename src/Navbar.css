@@ -1,50 +1,55 @@
+/* General Navbar Styling */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #EFF3E9;
-  color: #63854c;
+  background-color: #EFF3E9; /* Light, natural background */
+  color: #63854c; /* Soft green text */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   margin: 1rem;
   border-radius: 10px;
+  position: relative;
+  z-index: 20; /* Ensure navbar stays on top */
 }
 
 .navbar-logo h1 {
   font-size: 1.8rem;
   font-family: 'Maven Pro', sans-serif;
   font-weight: 700;
-  color: #4a752c;
+  color: #4a752c; /* Slightly darker green for distinction */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 }
 
+/* Navbar Links */
 .navbar-links {
   list-style: none;
   display: flex;
   gap: 2rem;
+  transition: all 0.3s ease;
 }
 
 .navbar-links li a {
-  color: black;
+  color: #4a4a4a; /* Neutral dark gray for links */
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 500;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
   border-radius: 8px;
-  position: relative;
 }
 
 .navbar-links li a:hover {
-  background-color: #d7aa08;
-  color: white;
+  background-color: #d7aa08; /* Warm golden hover effect */
+  color: #ffffff; /* White text on hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Order Now Button */
 .order-now-button {
   padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, #63854c, #4a752c);
-  color: white;
+  background: linear-gradient(135deg, #63854c, #4a752c); /* Subtle green gradient */
+  color: #ffffff; /* White text */
   border-radius: 8px;
   font-weight: bold;
   text-transform: uppercase;
@@ -53,38 +58,117 @@
 }
 
 .order-now-button:hover {
-  background-color: white;
-  color: #4a752c;
+  background-color: #ffffff; /* White background on hover */
+  color: #d7aa08; /* Soft green text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Cart Button Styling */
 .cart-button {
   background: none;
   border: none;
   cursor: pointer;
   position: relative;
+  font-size: 1.5rem;
+  color: #4a752c; /* Soft green for cart icon */
+  transition: transform 0.2s ease-in-out;
+}
+
+.cart-button:hover {
+  transform: scale(1.1);
+}
+
+.cart-button i {
+  font-size: 1.8rem; /* Icon size */
 }
 
 .cart-count {
   position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: #ff3b30;
-  color: white;
-  font-size: 1rem;
-  padding: 2px 6px;
-  border-radius: 50%;
+  top: -10px;
+  right: -10px;
+  background-color: #ff3b30; /* Vibrant red for badge */
+  color: #ffffff;
+  font-size: 0.9rem;
   font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Hamburger Menu Styling */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: #63854c; /* Soft green for hamburger */
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10; /* Ensure hamburger is always visible */
+}
+
+.hamburger:focus {
+  outline: none;
+}
+
+/* Dropdown Menu for Small Screens */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
     padding: 1rem;
   }
 
+  .hamburger {
+    display: block; /* Hamburger button visible */
+  }
+
   .navbar-links {
+    display: none; /* Initially hidden */
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    background-color: #EFF3E9;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 9;
+  }
+
+  .navbar-links.open {
+    display: flex; /* Show menu when open */
+    animation: dropdown 0.3s ease-in-out;
+  }
+
+  @keyframes dropdown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .navbar-links li a {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-logo h1 {
+    font-size: 1.5rem; /* Smaller logo for very small screens */
+  }
+
+  .order-now-button {
+    padding: 0.4rem 0.8rem; /* Adjust button size */
+    font-size: 0.9rem;
+  }
+
+  .cart-button i {
+    font-size: 1.4rem; /* Adjust cart icon size */
   }
 }

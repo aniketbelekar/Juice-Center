@@ -1,17 +1,17 @@
 .shop-location {
   margin: 55px auto;
-  max-width: 45%;
+  /* max-width: 5%; */
   padding: 32px;
   background-color: #EFF3E9; /* Light background color for a soft touch */
   border-radius: 15px; /* Rounded corners for a modern feel */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow to elevate the element */
   text-align: center;
   font-family: 'Arial', sans-serif;
-  position: absolute;
-  margin-top: 0;
-  margin-left: 52%;
-  width: 40%;
+  width: 100%;
   gap: 10px;
+  /* Remove the absolute positioning for better responsiveness */
+  margin-top: 0;
+  /* Remove the left margin as it was causing alignment issues */
 }
 
 /* Title styling */
@@ -48,11 +48,12 @@
 @media (max-width: 768px) {
   .shop-location {
     width: 90%; /* Adjust width for smaller screens */
-    padding: 20px;
+    padding: 20px; /* Reduce padding for smaller screens */
+    margin: 20px auto; /* Center the container */
   }
 
   .location-title {
-    font-size: 1.8rem;
+    font-size: 1.8rem; /* Adjust font size for mobile */
   }
 
   .map-container {

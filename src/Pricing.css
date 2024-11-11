@@ -92,6 +92,15 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Image size for the pricing cards */
+.pricing-card img {
+  width: 100%;  /* Ensures images fill the width of the card */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Maintain image quality without distortion */
+  border-radius: 10px; /* Rounded corners for the image */
+  max-height: 200px; /* Optional: limit the height to ensure uniformity */
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .pricing-list {

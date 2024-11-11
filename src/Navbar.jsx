@@ -3,9 +3,18 @@ import './Navbar.css';
 
 const Navbar = ({ cartItems, toggleCartVisibility, scrollToPricing }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control the popup visibility
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const showPopup = () => {
+    setIsPopupOpen(true); // Show the popup
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false); // Close the popup
   };
 
   return (
@@ -22,7 +31,7 @@ const Navbar = ({ cartItems, toggleCartVisibility, scrollToPricing }) => {
         <li><a href="#about">Juices</a></li>
         <li><a href="#contact">Contact</a></li>
         <li>
-          <button className="order-now-button" onClick={scrollToPricing}>
+          <button className="order-now-button" onClick={showPopup}>
             Order Now
           </button>
         </li>
@@ -35,6 +44,18 @@ const Navbar = ({ cartItems, toggleCartVisibility, scrollToPricing }) => {
           </button>
         </li>
       </ul>
+
+      {/* Confirmation Pop-up Modal */}
+      {isPopupOpen && (
+        <div className="popup-message">
+          <div className="popup-content">
+            <p>Your order has been placed successfully!</p>
+            <button className="close-popup" onClick={closePopup}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

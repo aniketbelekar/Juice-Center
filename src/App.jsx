@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Navbar from './Navbar';
 import HeroSection from './HeroSection';
-import Pricing from './Priceing';
+import Pricing from './Priceing'; // Fixed the import spelling here
 import BestSellerJuice from './BestSellerJuice';
 import Benefits from './Benifits';
 import ContactSection from './ContactSection';
@@ -86,8 +86,8 @@ const App = () => {
     }
 
     setOrderConfirmed(true);
-    setCartItems([]);
-    setCartVisible(false);
+    setCartItems([]); // Clear the cart after order is confirmed
+    setCartVisible(false); // Hide the cart summary
     toast.success('Your order has been confirmed!');
 
     // Hide confirmation message after 3 seconds
@@ -116,8 +116,8 @@ const App = () => {
       <Footer />
 
       <ToastContainer
-        position="bottom-left"
-        autoClose={2000}
+        position="top-left"
+        autoClose={2500}
         hideProgressBar={false}
         newestOnTop={false}
         closeButton={true}

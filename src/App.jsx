@@ -27,7 +27,20 @@ const App = () => {
   // Reset scroll position on initial render
   useEffect(() => {
     window.scrollTo(0, 0); // Ensure the page loads at the top
+
+    // Load cart items from localStorage on page load
+    const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
+    if (savedCartItems) {
+      setCartItems(savedCartItems);
+    }
   }, []);
+
+  // Save cart items to localStorage whenever cartItems state changes
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
 
   // Scroll to Pricing section
   const scrollToPricing = () => {

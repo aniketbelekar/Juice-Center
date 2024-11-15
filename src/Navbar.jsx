@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-scroll'; // Ensure you import Link correctly
 import './Navbar.css';
 
-const Navbar = ({ cartItems, toggleCartVisibility, scrollToPricing }) => {
+const Navbar = ({ cartItems, toggleCartVisibility }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control the popup visibility
 
@@ -25,25 +26,35 @@ const Navbar = ({ cartItems, toggleCartVisibility, scrollToPricing }) => {
       <button className="hamburger" onClick={toggleMenu}>
         <i className={`fas ${menuOpen ? 'fa-times' : 'fa-bars'}`}></i>
       </button>
-      <ul className={`navbar-links ${menuOpen ? 'open' : ''}`}>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#menu">Best Seller</a></li>
-        <li><a href="#about">Juices</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li>
-          <button className="order-now-button" onClick={showPopup}>
-            Order Now
-          </button>
-        </li>
-        <li className="cart-icon">
-          <button onClick={toggleCartVisibility} className="cart-button">
-            <i className="fas fa-shopping-cart"></i>
-            {cartItems?.length > 0 && (
-              <span className="cart-count">{cartItems.length}</span>
-            )}
-          </button>
-        </li>
-      </ul>
+    <ul className={`navbar-links ${menuOpen ? 'open' : ''}`}>
+  <li>
+    <Link to="home" smooth={true} duration={500}>
+      Home
+    </Link>
+  </li>
+  <li>
+    <Link to="best-seller" smooth={true} duration={500}>
+      Best Seller
+    </Link>
+  </li>
+  <li>
+    <a href="#contact">Contact</a>
+  </li>
+  <li id="order-now">
+    <Link to="products" smooth={true} duration={500}>
+      <button className="order-now-button">Order Now</button>
+    </Link>
+  </li>
+  <li className="cart-icon">
+    <button onClick={toggleCartVisibility} className="cart-button">
+      <i className="fas fa-shopping-cart"></i>
+      {cartItems?.length > 0 && (
+        <span className="cart-count">{cartItems.length}</span>
+      )}
+    </button>
+  </li>
+</ul>
+
 
       {/* Confirmation Pop-up Modal */}
       {isPopupOpen && (

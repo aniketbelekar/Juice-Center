@@ -33,11 +33,11 @@
 
 .form-group input,
 .form-group textarea {
-  width: 100%;
+  width: 95%;
   padding: 14px;
   font-size: 1rem;
   border: 1px solid #c7bfae;
-  border-radius: 10px;
+  border-radius: 38px;
   background-color: #ffffff;
   transition: all 0.3s ease;
 }
@@ -61,7 +61,7 @@
   font-size: 1.1rem;
   font-weight: bold;
   border: none;
-  border-radius: 12px;
+  border-radius: 38px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   width: 100%;

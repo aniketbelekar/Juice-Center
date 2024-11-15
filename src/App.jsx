@@ -10,6 +10,7 @@ import Footer from './Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -20,6 +21,9 @@ const App = () => {
   const [address, setAddress] = useState('');
   const [mobile, setMobile] = useState('');
   const [notes, setNotes] = useState('');
+  const [location, setLocation] = useState(null); // State for storing location
+  const [mapVisible, setMapVisible] = useState(false); // State to toggle map visibility
+  const [selectedLocation, setSelectedLocation] = useState(null); // To store selected location
 
   // Reference for Pricing section
   const pricingRef = useRef(null);
@@ -109,6 +113,42 @@ const App = () => {
     }, 3000);
   };
 
+  // Function to get the user's location
+  const shareLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setLocation({ lat: latitude, lng: longitude });
+          setMapVisible(true); // Show the map after location is found
+        },
+        (error) => {
+          toast.error("Unable to retrieve your location.");
+        }
+      );
+    } else {
+      toast.error("Geolocation is not supported by this browser.");
+    }
+  };
+
+  // Function to handle the selection of a location on the map
+  const handleMapClick = (event) => {
+    const selectedLat = event.latLng.lat();
+    const selectedLng = event.latLng.lng();
+    setSelectedLocation({ lat: selectedLat, lng: selectedLng });
+
+    // Use the Geocoding API to convert coordinates to a human-readable address
+    const geocoder = new window.google.maps.Geocoder();
+    const latLng = { lat: selectedLat, lng: selectedLng };
+    geocoder.geocode({ location: latLng }, (results, status) => {
+      if (status === 'OK' && results[0]) {
+        setAddress(results[0].formatted_address); // Set the address field to the selected location
+      } else {
+        toast.error('Unable to retrieve address for the selected location.');
+      }
+    });
+  };
+
   return (
     <div>
       <Navbar
@@ -117,9 +157,7 @@ const App = () => {
         scrollToPricing={scrollToPricing}
       />
       <HeroSection />
-
       <BestSellerJuice addToCart={addToCart} />
-
       <div ref={pricingRef}>
         <Pricing addToCart={addToCart} />
       </div>
@@ -136,6 +174,29 @@ const App = () => {
         closeButton={true}
         rtl={false}
       />
+
+      {mapVisible && (
+        <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
+          <GoogleMap
+            mapContainerStyle={{ height: '400px', width: '100%' }}
+            center={location}
+            zoom={15}
+            onClick={handleMapClick}
+          >
+            {selectedLocation && (
+              <Marker position={selectedLocation} />
+            )}
+            {selectedLocation && (
+              <InfoWindow position={selectedLocation}>
+                <div>
+                  <h4>Selected Location</h4>
+                  <p>{address}</p>
+                </div>
+              </InfoWindow>
+            )}
+          </GoogleMap>
+        </LoadScript>
+      )}
 
       {cartVisible && (
         <div className={`cart-summary ${cartVisible ? 'visible' : ''}`}>

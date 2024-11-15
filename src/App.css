@@ -1,5 +1,8 @@
 /* General Settings */
 @import "@fortawesome/fontawesome-free/css/all.min.css";
+/* Add this to your CSS */
+@import url('https://unpkg.com/leaflet/dist/leaflet.css');
+
 html {
   scroll-behavior: smooth;
 }
@@ -293,4 +296,16 @@ body {
   color: #333;
   margin: 0 10px;
   display: inline-block;
+}
+.share-location-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.share-location-button:hover {
+  background-color: #45a049;
 }

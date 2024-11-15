@@ -4,15 +4,21 @@
   flex-direction: column;
   align-items: center;
   padding: 40px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif; /* Clean and modern font */
   background-color: #f9f9f9;
   max-width: 700px;
   margin: auto;
-  border-radius: 10px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 15px; /* More rounded corners */
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.1); /* Larger, softer shadow */
   position: relative;
   margin-top: 25px;
-  text-align: center; /* Center-align content by default */
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.best-seller-juice:hover {
+  box-shadow: 0px 18px 30px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+  transform: translateY(-5px); /* Subtle lift effect */
 }
 
 /* Price Sticker */
@@ -22,97 +28,147 @@
   left: 20px;
   background-color: #d9a324; /* Golden color */
   color: #fff;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 10px 15px;
-  border-radius: 5px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 12px 18px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Softer shadow */
   transform: rotate(-15deg);
+  letter-spacing: 1px;
 }
 
 /* Juice Image */
 .juice-image {
-  width: 150px;
+  width: 160px; /* Slightly larger image */
   height: auto;
   border-radius: 12px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
-  border: 4px solid #d9a324;
-  transition: transform 0.3s ease;
-  margin-bottom: 20px; /* Add margin for spacing */
+  border: 5px solid #d9a324;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 25px;
 }
 
 .juice-image:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2); /* Larger hover shadow */
 }
 
 /* Text Content */
 .text-content {
   max-width: 600px;
-  margin: 0 auto; /* Center the content */
+  margin: 0 auto;
 }
 
 .best-seller-juice h2 {
   color: #4a752c;
-  font-size: 2.2rem;
-  font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: 20px;
-  font-family: 'Maven Pro', sans-serif;
+  font-family: 'Maven Pro', sans-serif; /* Decorative font */
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.best-seller-juice h2:hover {
+  color: #63854c; /* Subtle hover effect */
 }
 
 .best-seller-juice h3 {
   color: #d9a324;
-  font-size: 1.8rem;
-  font-weight: bold;
+  font-size: 2rem;
+  font-weight: 700;
   margin: 0;
   margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif; /* Modern and stylish font */
 }
 
 .best-seller-juice p {
-  color: #444;
-  font-size: 1rem;
-  line-height: 1.6;
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.8;
   margin: 10px 0 20px;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 /* Add to Cart Button */
 .add-to-cart-button {
   background-color: #4a752c;
   color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.1rem;
+  font-weight: 700;
   border: none;
-  padding: 12px 25px;
-  border-radius: 5px;
+  padding: 14px 28px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   margin-top: 15px;
 }
 
 .add-to-cart-button:hover {
   background-color: #245024;
+  transform: translateY(-2px); /* Subtle lift on hover */
+}
+
+.add-to-cart-button:active {
+  transform: translateY(1px); /* Slight dip on click */
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
   .best-seller-juice {
-    flex-direction: column;
     padding: 30px;
     max-width: 90%;
   }
 
   .price-sticker {
-    font-size: 1rem;
+    font-size: 1.1rem;
     top: 15px;
     left: 15px;
+    padding: 10px 14px;
+  }
+
+  .juice-image {
+    width: 140px; /* Adjust image size */
+  }
+
+  .best-seller-juice h2 {
+    font-size: 2.2rem;
+  }
+
+  .best-seller-juice h3 {
+    font-size: 1.7rem;
+  }
+
+  .best-seller-juice p {
+    font-size: 1rem;
+  }
+
+  .add-to-cart-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .best-seller-juice {
+    padding: 25px;
+  }
+
+  .price-sticker {
+    font-size: 1rem;
+    top: 12px;
+    left: 12px;
     padding: 8px 12px;
   }
 
   .juice-image {
-    width: 130px; /* Adjust image size */
+    width: 130px; /* Smaller image */
   }
 
   .best-seller-juice h2 {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
 
   .best-seller-juice h3 {
@@ -120,33 +176,31 @@
   }
 
   .best-seller-juice p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .add-to-cart-button {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    padding: 10px 22px;
+    font-size: 0.95rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .best-seller-juice {
     padding: 20px;
   }
 
   .price-sticker {
     font-size: 0.9rem;
-    top: 10px;
-    left: 10px;
     padding: 6px 10px;
   }
 
   .juice-image {
-    width: 120px; /* Smaller image */
+    width: 100px; /* Smaller image size */
   }
 
   .best-seller-juice h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .best-seller-juice h3 {
@@ -160,37 +214,5 @@
   .add-to-cart-button {
     padding: 8px 18px;
     font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .best-seller-juice {
-    padding: 15px;
-  }
-
-  .price-sticker {
-    font-size: 0.8rem;
-    padding: 5px 8px;
-  }
-
-  .juice-image {
-    width: 100px; /* Small image size */
-  }
-
-  .best-seller-juice h2 {
-    font-size: 1.5rem;
-  }
-
-  .best-seller-juice h3 {
-    font-size: 1.2rem;
-  }
-
-  .best-seller-juice p {
-    font-size: 0.8rem;
-  }
-
-  .add-to-cart-button {
-    padding: 6px 15px;
-    font-size: 0.8rem;
   }
 }

@@ -11,7 +11,7 @@ const BestSellerJuice = ({ addToCart }) => {
   };
 
   return (
-    <div className="best-seller-juice">
+    <div id="best-seller" className="best-seller-juice"> {/* Ensure the ID matches */}
       {/* Price Sticker */}
       <div className="price-sticker">{bestSellingJuice.price}</div>
 

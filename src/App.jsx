@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import Home from "./Home"
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -151,6 +152,7 @@ const App = () => {
 
   return (
     <div>
+      <Home/>
       <Navbar
         cartItems={cartItems}
         toggleCartVisibility={toggleCartVisibility}

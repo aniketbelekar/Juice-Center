@@ -37,9 +37,9 @@ const Navbar = ({ cartItems, toggleCartVisibility }) => {
       Best Seller
     </Link>
   </li>
-  <li>
+  {/* <li>
     <a href="#contact">Contact</a>
-  </li>
+  </li> */}
   <li id="order-now">
     <Link to="products" smooth={true} duration={500}>
       <button className="order-now-button">Order Now</button>

@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
-import Home from "./Home"
+import Home from './Home';
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -22,42 +22,38 @@ const App = () => {
   const [address, setAddress] = useState('');
   const [mobile, setMobile] = useState('');
   const [notes, setNotes] = useState('');
-  const [location, setLocation] = useState(null); // State for storing location
-  const [mapVisible, setMapVisible] = useState(false); // State to toggle map visibility
-  const [selectedLocation, setSelectedLocation] = useState(null); // To store selected location
+  const [location, setLocation] = useState(null);
+  const [mapVisible, setMapVisible] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState(null);
 
   // Reference for Pricing section
   const pricingRef = useRef(null);
 
   // Reset scroll position on initial render
   useEffect(() => {
-    window.scrollTo(0, 0); // Ensure the page loads at the top
+    window.scrollTo(0, 0);
 
-    // Load cart items from localStorage on page load
     const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
     if (savedCartItems) {
       setCartItems(savedCartItems);
     }
   }, []);
 
-  // Save cart items to localStorage whenever cartItems state changes
   useEffect(() => {
     if (cartItems.length > 0) {
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
   }, [cartItems]);
 
-  // Scroll to Pricing section
   const scrollToPricing = () => {
     pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Add item to cart
   const addToCart = (item) => {
-    const existingItem = cartItems.find(cartItem => cartItem.name === item.name);
+    const existingItem = cartItems.find((cartItem) => cartItem.name === item.name);
     if (existingItem) {
       setCartItems(
-        cartItems.map(cartItem =>
+        cartItems.map((cartItem) =>
           cartItem.name === item.name
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
@@ -69,21 +65,17 @@ const App = () => {
     toast.success(`${item.name} has been added to your cart!`);
   };
 
-  // Increase quantity of item
   const increaseQuantity = (name) => {
     setCartItems(
-      cartItems.map(item =>
-        item.name === name
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
+      cartItems.map((item) =>
+        item.name === name ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
 
-  // Decrease quantity of item
   const decreaseQuantity = (name) => {
     setCartItems(
-      cartItems.map(item =>
+      cartItems.map((item) =>
         item.name === name && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
@@ -91,12 +83,15 @@ const App = () => {
     );
   };
 
-  // Toggle Cart visibility
+  const removeItemFromCart = (name) => {
+    setCartItems(cartItems.filter((item) => item.name !== name));
+    toast.success(`${name} has been removed from your cart!`);
+  };
+
   const toggleCartVisibility = () => {
     setCartVisible(!cartVisible);
   };
 
-  // Handle order confirmation
   const handleOrderConfirmation = () => {
     if (!address || !mobile) {
       toast.error('Please fill in all the fields!');
@@ -104,46 +99,41 @@ const App = () => {
     }
 
     setOrderConfirmed(true);
-    setCartItems([]); // Clear the cart after order is confirmed
-    setCartVisible(false); // Hide the cart summary
+    setCartItems([]);
     toast.success('Your order has been confirmed!');
 
-    // Hide confirmation message after 3 seconds
     setTimeout(() => {
       setOrderConfirmed(false);
     }, 3000);
   };
 
-  // Function to get the user's location
   const shareLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
           setLocation({ lat: latitude, lng: longitude });
-          setMapVisible(true); // Show the map after location is found
+          setMapVisible(true);
         },
         (error) => {
-          toast.error("Unable to retrieve your location.");
+          toast.error('Unable to retrieve your location.');
         }
       );
     } else {
-      toast.error("Geolocation is not supported by this browser.");
+      toast.error('Geolocation is not supported by this browser.');
     }
   };
 
-  // Function to handle the selection of a location on the map
   const handleMapClick = (event) => {
     const selectedLat = event.latLng.lat();
     const selectedLng = event.latLng.lng();
     setSelectedLocation({ lat: selectedLat, lng: selectedLng });
 
-    // Use the Geocoding API to convert coordinates to a human-readable address
     const geocoder = new window.google.maps.Geocoder();
     const latLng = { lat: selectedLat, lng: selectedLng };
     geocoder.geocode({ location: latLng }, (results, status) => {
       if (status === 'OK' && results[0]) {
-        setAddress(results[0].formatted_address); // Set the address field to the selected location
+        setAddress(results[0].formatted_address);
       } else {
         toast.error('Unable to retrieve address for the selected location.');
       }
@@ -152,7 +142,7 @@ const App = () => {
 
   return (
     <div>
-      <Home/>
+      <Home />
       <Navbar
         cartItems={cartItems}
         toggleCartVisibility={toggleCartVisibility}
@@ -164,8 +154,8 @@ const App = () => {
         <Pricing addToCart={addToCart} />
       </div>
       <Benefits />
-      <ShopLocation />
-      <ContactSection />
+      {/* <ShopLocation /> */}
+      {/* <ContactSection /> */}
       <Footer />
 
       <ToastContainer
@@ -185,9 +175,7 @@ const App = () => {
             zoom={15}
             onClick={handleMapClick}
           >
-            {selectedLocation && (
-              <Marker position={selectedLocation} />
-            )}
+            {selectedLocation && <Marker position={selectedLocation} />}
             {selectedLocation && (
               <InfoWindow position={selectedLocation}>
                 <div>
@@ -209,7 +197,7 @@ const App = () => {
             </button>
           </div>
           <ul>
-            {cartItems.map(item => (
+            {cartItems.map((item) => (
               <li key={item.name}>
                 <span className="item-name">{item.name}</span>
                 <div>
@@ -228,6 +216,12 @@ const App = () => {
                       disabled={item.quantity <= 1}
                     >
                       -
+                    </button>
+                    <button
+                      className="remove-item-button"
+                      onClick={() => removeItemFromCart(item.name)}
+                    >
+                      Remove
                     </button>
                   </div>
                 </div>

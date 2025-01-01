@@ -309,3 +309,48 @@ body {
 .share-location-button:hover {
   background-color: #45a049;
 }
+/* Basic button styling */
+.remove-item-button {
+  background-color: rgba(251, 243, 243, 0.9); /* Lighter background */
+  color: #333; /* Dark text color */
+  padding: 8px 16px; /* Slightly larger padding */
+  border-radius: 20px; /* Rounded corners */
+  font-size: 14px; /* Adjust font size for better readability */
+  border: 1px solid #ccc; /* Light border for better definition */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: all 0.3s ease; /* Smooth transitions for hover/active states */
+}
+
+/* Hover effect */
+.remove-item-button:hover {
+  background-color: #e57373; /* Lighter red on hover */
+  color: white; /* White text on hover */
+  border-color: #e57373; /* Matching border on hover */
+}
+
+/* Active effect for button click */
+.remove-item-button:active {
+  background-color: #c62828; /* Darker red when clicked */
+  border-color: #c62828; /* Matching border on active state */
+}
+
+/* Focus effect for accessibility */
+.remove-item-button:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.6); /* Red glow around the button */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .remove-item-button {
+    font-size: 12px; /* Smaller font size on mobile */
+    padding: 6px 12px; /* Adjust padding for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .remove-item-button {
+    font-size: 10px; /* Even smaller font size for very small screens */
+    padding: 5px 10px; /* Smaller padding for very small screens */
+  }
+}

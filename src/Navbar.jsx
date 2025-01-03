@@ -42,7 +42,7 @@ const Navbar = ({ cartItems, toggleCartVisibility }) => {
   </li> */}
   <li id="order-now">
     <Link to="products" smooth={true} duration={500}>
-      <button className="order-now-button">Order Now</button>
+      <button className="order-now-button">Juices</button>
     </Link>
   </li>
   <li className="cart-icon">

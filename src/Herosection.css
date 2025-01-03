@@ -46,7 +46,7 @@
 .hero-video {
   position: relative;
   width: 45%; /* Set video width */
-  height: auto; /* Maintain aspect ratio */
+  height: 100%; /* Maintain video height */
   z-index: 1; /* Ensure video stays behind text */
   border-radius: 20px;
   overflow: hidden; /* Ensure no overflow */
@@ -54,7 +54,7 @@
 
 .hero-video video {
   width: 100%; /* Fit container width */
-  height: auto; /* Maintain aspect ratio */
+  height: 100%; /* Maintain full height */
   object-fit: cover;
   border-radius: 20px;
 }
@@ -82,8 +82,8 @@
   }
 
   .hero-video {
-    width: 80%; /* Adjust video size */
-    height: 50vh; /* Reduced height */
+    width: 100%; /* Full width for video */
+    height: auto; /* Maintain aspect ratio */
   }
 }
 
@@ -102,8 +102,8 @@
   }
 
   .hero-video {
-    width: 90%; /* Increase video width for smaller screens */
-    height: 40vh; /* Further reduce video height */
+    width: 100%; /* Full width for video */
+    height: 100%; /* Maintain original height */
   }
 }
 

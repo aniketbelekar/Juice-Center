@@ -19,9 +19,9 @@ const App = () => {
   const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   // Form states
+  const [name, setName] = useState('');  // New state for name
   const [address, setAddress] = useState('');
   const [mobile, setMobile] = useState('');
-  const [notes, setNotes] = useState('');
   const [location, setLocation] = useState(null);
   const [mapVisible, setMapVisible] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -29,7 +29,7 @@ const App = () => {
   // Reference for Pricing section
   const pricingRef = useRef(null);
 
-  // Reset scroll position on initial render
+  // Load cart items from localStorage on initial render
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -39,6 +39,7 @@ const App = () => {
     }
   }, []);
 
+  // Save cart items to localStorage whenever they change
   useEffect(() => {
     if (cartItems.length > 0) {
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -93,51 +94,41 @@ const App = () => {
   };
 
   const handleOrderConfirmation = () => {
-    if (!address || !mobile) {
+    if (!name || !address || !mobile) {
       toast.error('Please fill in all the fields!');
       return;
     }
 
-    setOrderConfirmed(true);
-    setCartItems([]);
-    toast.success('Your order has been confirmed!');
+    // Construct the WhatsApp message (without URL encoding for new lines)
+    const message = `Hello! I would like to place an order.\n\n` +
+                    `*Name*: ${name}\n` +
+                    `*Address*: ${address}\n` +
+                    `*Mobile*: ${mobile}\n\n` +
+                    `*Order Details*:\n` +
+                    `${cartItems.map(item => `• ${item.name} - Qty: ${item.quantity}, Price: RS ${item.price.split(' ')[1]}`).join('\n')}\n\n` +
+                    `*Total Price*: RS ${cartItems
+                      .reduce(
+                        (total, item) =>
+                          total + parseFloat(item.price.split(' ')[1]) * item.quantity,
+                        0
+                      )
+                      .toFixed(2)}`;
 
-    setTimeout(() => {
-      setOrderConfirmed(false);
-    }, 3000);
-  };
+    // Ensure the message is properly encoded for the URL
+    const whatsappURL = `https://wa.me/918010943543?text=${encodeURIComponent(message)}`;
 
-  const shareLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setLocation({ lat: latitude, lng: longitude });
-          setMapVisible(true);
-        },
-        (error) => {
-          toast.error('Unable to retrieve your location.');
-        }
-      );
-    } else {
-      toast.error('Geolocation is not supported by this browser.');
+    // Show confirmation popup
+    if (window.confirm("We are redirecting you to WhatsApp. Press OK to send your order details.")) {
+      // Set order confirmed state and clear the cart
+      setOrderConfirmed(true);
+      setCartItems([]); // Clear cart after order is confirmed
+      toast.success('Your order has been confirmed!');
+
+      setTimeout(() => {
+        setOrderConfirmed(false);
+        window.location.href = whatsappURL; // Redirect to WhatsApp chat
+      }, 500); // Reduced the delay to 1 second
     }
-  };
-
-  const handleMapClick = (event) => {
-    const selectedLat = event.latLng.lat();
-    const selectedLng = event.latLng.lng();
-    setSelectedLocation({ lat: selectedLat, lng: selectedLng });
-
-    const geocoder = new window.google.maps.Geocoder();
-    const latLng = { lat: selectedLat, lng: selectedLng };
-    geocoder.geocode({ location: latLng }, (results, status) => {
-      if (status === 'OK' && results[0]) {
-        setAddress(results[0].formatted_address);
-      } else {
-        toast.error('Unable to retrieve address for the selected location.');
-      }
-    });
   };
 
   return (
@@ -154,8 +145,6 @@ const App = () => {
         <Pricing addToCart={addToCart} />
       </div>
       <Benefits />
-      {/* <ShopLocation /> */}
-      {/* <ContactSection /> */}
       <Footer />
 
       <ToastContainer
@@ -166,27 +155,6 @@ const App = () => {
         closeButton={true}
         rtl={false}
       />
-
-      {mapVisible && (
-        <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
-          <GoogleMap
-            mapContainerStyle={{ height: '400px', width: '100%' }}
-            center={location}
-            zoom={15}
-            onClick={handleMapClick}
-          >
-            {selectedLocation && <Marker position={selectedLocation} />}
-            {selectedLocation && (
-              <InfoWindow position={selectedLocation}>
-                <div>
-                  <h4>Selected Location</h4>
-                  <p>{address}</p>
-                </div>
-              </InfoWindow>
-            )}
-          </GoogleMap>
-        </LoadScript>
-      )}
 
       {cartVisible && (
         <div className={`cart-summary ${cartVisible ? 'visible' : ''}`}>
@@ -230,6 +198,16 @@ const App = () => {
           </ul>
           <div className="order-details">
             <div className="form-group">
+              <label htmlFor="name">Full Name:</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your full name"
+              />
+            </div>
+            <div className="form-group">
               <label htmlFor="address">Address:</label>
               <input
                 type="text"
@@ -247,15 +225,6 @@ const App = () => {
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
                 placeholder="Enter your mobile number"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="notes">Additional Notes:</label>
-              <textarea
-                id="notes"
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                placeholder="Enter any additional notes"
               />
             </div>
             <div className="total-price">

@@ -1,4 +1,3 @@
-/* Navbar Container */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -9,9 +8,12 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   margin: 1rem;
   border-radius: 10px;
-  position: relative;
+  position: sticky; /* Sticky navbar */
+  top: 0; /* Sticks to the top */
   z-index: 10; /* Ensure navbar stays on top */
   font-family: 'Poppins', sans-serif; /* Clean and modern font */
+  width: 94%; /* Full width of the viewport */
+  flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
 /* Navbar Logo */
@@ -291,3 +293,4 @@
   margin-top: 20px;
   text-align: center;
 }
+

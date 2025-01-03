@@ -122,3 +122,25 @@
         font-size: 0.9rem; /* Reduced bottom section text size */
     }
 }
+.whatsapp-icon {
+  background-color: #25d366;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-icon:hover {
+  background-color: #1ebe57;
+}
+
+.whatsapp-icon i {
+  font-size: 24px;
+}

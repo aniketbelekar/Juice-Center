@@ -3,7 +3,7 @@ import './HeroSection.css';
 
 const HeroSection = () => {
   return (
-    <section id="" className="hero-section">
+    <section id="home" className="hero-section"> {/* Added id="home" */}
       <div className="hero-text">
         <h1>Cool, Crisp, and 100% Natural Sugarcane Juice</h1>
         <p>
@@ -18,7 +18,7 @@ const HeroSection = () => {
       </div>
       <div className="hero-video">
         <video autoPlay loop muted>
-          <source src="public/sugarcane video.mp4" type="video/mp4" />
+          <source src="public/sugarcane video.mp4" type="video/mp4" /> {/* Updated the src path */}
           Your browser does not support the video tag.
         </video>
       </div>

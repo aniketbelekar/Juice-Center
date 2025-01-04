@@ -91,21 +91,42 @@ const App = () => {
   const toggleCartVisibility = () => {
     setCartVisible(!cartVisible);
   };
-
   const handleOrderConfirmation = () => {
-    if (!address || !mobile) {
-      toast.error('Please fill in all the fields!');
+    if (!address || !mobile || cartItems.length === 0) {
+      toast.error('Please complete all fields and add items to your cart.');
       return;
     }
-
+  
+    const cartDetails = cartItems
+      .map(
+        (item) => `${item.name} (Qty: ${item.quantity}, Price: ${item.price})`
+      )
+      .join('\n');
+  
+    const totalPrice = calculateTotalPrice();
+  
+    const message = `Order Confirmation:
+  Address: ${address}
+  Mobile: ${mobile}
+  Notes: ${notes || 'N/A'}
+  
+  Cart Items:
+  ${cartDetails}
+  
+  Total: RS ${totalPrice}`;
+  
+    const whatsappNumber = "918010943543"; // Update with your WhatsApp number
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  
+    // Redirect to WhatsApp
+    window.open(whatsappURL, '_blank');
+  
+    // Clear cart
     setOrderConfirmed(true);
     setCartItems([]);
-    toast.success('Your order has been confirmed!');
-
-    setTimeout(() => {
-      setOrderConfirmed(false);
-    }, 3000);
   };
+  
+  
 
   const shareLocation = () => {
     if (navigator.geolocation) {

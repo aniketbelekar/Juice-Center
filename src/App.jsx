@@ -103,7 +103,13 @@ const App = () => {
       )
       .join('\n');
   
-    const totalPrice = calculateTotalPrice();
+    const totalPrice = cartItems
+      .reduce(
+        (total, item) =>
+          total + parseFloat(item.price.split(' ')[1]) * item.quantity,
+        0
+      )
+      .toFixed(2);
   
     const message = `Order Confirmation:
   Address: ${address}
@@ -115,8 +121,13 @@ const App = () => {
   
   Total: RS ${totalPrice}`;
   
-    const whatsappNumber = "918010943543"; // Update with your WhatsApp number
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappNumber = "918010943543"; // Replace with your WhatsApp number
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+  
+    // Log the URL for debugging
+    console.log(whatsappURL);
   
     // Redirect to WhatsApp
     window.open(whatsappURL, '_blank');
@@ -125,6 +136,7 @@ const App = () => {
     setOrderConfirmed(true);
     setCartItems([]);
   };
+  
   
   
 
@@ -250,54 +262,52 @@ const App = () => {
             ))}
           </ul>
           <div className="order-details">
-            <div className="form-group">
-              <label htmlFor="address">Address:</label>
-              <input
-                type="text"
-                id="address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder="Enter your address"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="mobile">Mobile Number:</label>
-              <input
-                type="text"
-                id="mobile"
-                value={mobile}
-                onChange={(e) => setMobile(e.target.value)}
-                placeholder="Enter your mobile number"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="notes">Additional Notes:</label>
-              <textarea
-                id="notes"
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                placeholder="Enter any additional notes"
-              />
-            </div>
-            <div className="total-price">
-              <h4>
-                Total: RS{' '}
-                {cartItems
-                  .reduce(
-                    (total, item) =>
-                      total + parseFloat(item.price.split(' ')[1]) * item.quantity,
-                    0
-                  )
-                  .toFixed(2)}
-              </h4>
-            </div>
-            <button
-              className="order-confirm-button"
-              onClick={handleOrderConfirmation}
-            >
-              Confirm Order
-            </button>
-          </div>
+  <div className="form-group">
+    <label htmlFor="name">Name:</label>
+    <input
+      type="text"
+      id="name"
+      value={address} // Keeping the same state for simplicity
+      onChange={(e) => setAddress(e.target.value)}
+      placeholder="Enter your name"
+    />
+  </div>
+  <div className="form-group">
+    <label htmlFor="mobile">Mobile Number:</label>
+    <input
+      type="text"
+      id="mobile"
+      value={mobile}
+      onChange={(e) => setMobile(e.target.value)}
+      placeholder="Enter your mobile number"
+    />
+  </div>
+  <div className="form-group">
+    <label htmlFor="address">Address:</label>
+    <textarea
+      id="address"
+      value={notes} // Keeping the same state for simplicity
+      onChange={(e) => setNotes(e.target.value)}
+      placeholder="Enter your address"
+    />
+  </div>
+  <div className="total-price">
+    <h4>
+      Total: RS{' '}
+      {cartItems
+        .reduce(
+          (total, item) =>
+            total + parseFloat(item.price.split(' ')[1]) * item.quantity,
+          0
+        )
+        .toFixed(2)}
+    </h4>
+  </div>
+  <button className="order-confirm-button" onClick={handleOrderConfirmation}>
+    Confirm Order
+  </button>
+</div>
+
         </div>
       )}
 

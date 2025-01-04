@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Navbar from './Navbar';
-import HeroSection from './HeroSection';
+import HeroSection from './Hero';
 import Pricing from './Priceing'; // Fixed the import spelling here
 import BestSellerJuice from './BestSellerJuice';
 import Benefits from './Benifits';

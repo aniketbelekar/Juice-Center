@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Navbar from './Navbar';
 import HeroSection from './Hero';
 import Pricing from './Priceing'; // Fixed the import spelling here
-import BestSellerJuice from './BestSellerJuice';
+import BestSellerJuice from './SellerJuice';
 import Benefits from './Benifits';
 import ContactSection from './ContactSection';
 import ShopLocation from './ShopLocation';

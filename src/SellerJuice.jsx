@@ -1,5 +1,5 @@
 import React from 'react';
-import './BestSellerJuice.css';
+import './SellerJuice.css';
 
 const BestSellerJuice = ({ addToCart }) => {
   const bestSellingJuice = {

@@ -96,7 +96,7 @@
 .pricing-card img {
   width: 100%;  /* Ensures images fill the width of the card */
   height: auto; /* Maintain aspect ratio */
-  object-fit: cover; /* Maintain image quality without distortion */
+  object-fit: contain; /* Maintain image quality without distortion */
   border-radius: 10px; /* Rounded corners for the image */
   max-height: 200px; /* Optional: limit the height to ensure uniformity */
 }

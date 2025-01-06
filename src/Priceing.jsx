@@ -4,9 +4,9 @@ import './Pricing.css';
 const Pricing = ({ addToCart }) => {
   const juices = [
     { 
-      name: "Fresh Sugar Cane Juice", 
+      name: "Fresh Sugar Cane Juice with Ginger,Lemon,Mint ", 
       price: "RS 60/LT", 
-      description: "Freshly pressed sugar cane juice with a hint of lime.",
+      description: "Freshly pressed sugar cane juice with a Mint of lime.",
       image: "src/Images/mint juice.jpg" // Add image path here
     },
     { 
@@ -16,16 +16,22 @@ const Pricing = ({ addToCart }) => {
       image: "src/Images/ginger.jpg" // Add image path here
     },
     { 
-      name: "Sugar Cane Mint Lemon", 
-      price: "RS 60/LT", 
+      name: "Sugar Cane Mint Lemon orange ", 
+      price: "RS 70/LT", 
       description: "A cool and minty sugar cane juice with a mojito flavor.",
-      image: "src/Images/mint lemon.jpg" // Add image path here
+      image: "src/Images/orange.jpg" // Add image path here
+    },
+    { 
+      name: "Plane Sugarcane  ", 
+      price: "RS 70/LT", 
+      description: "A cool and Plane sugar cane juice .",
+      image: "src/Images/plane.jpg" // Add image path here
     },
   ];
 
   return (
     <div id="products" className="pricing-section">
-      <h2 className="pricing-heading">Our Juice Pricing</h2>
+      <h2 className="pricing-heading">MENU CARD</h2>
       <div className="pricing-list">
         {juices.map((juice, index) => (
           <div key={index} className="pricing-card">

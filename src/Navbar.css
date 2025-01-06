@@ -155,12 +155,16 @@
 /* Dropdown Menu for Small Screens */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between; /* Ensures space between logo and hamburger */
+    align-items: center;
     padding: 1rem;
   }
 
   .hamburger {
     display: block;
+    margin-left: auto; /* Pushes hamburger to the far right */
+    cursor: pointer;
   }
 
   .navbar-links {
@@ -197,22 +201,6 @@
 
   .navbar-links li a {
     font-size: 1rem;
-  }
-}
-
-/* Small Screen Adjustments */
-@media (max-width: 480px) {
-  .navbar-logo h1 {
-    font-size: 1.5rem;
-  }
-
-  .order-now-button {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  .cart-button i {
-    font-size: 1.4rem;
   }
 }
 

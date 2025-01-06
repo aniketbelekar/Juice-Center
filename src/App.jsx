@@ -25,7 +25,7 @@ const App = () => {
   const [location, setLocation] = useState(null);
   const [mapVisible, setMapVisible] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
-
+  const [name, setName] = useState('');
   // Reference for Pricing section
   const pricingRef = useRef(null);
 
@@ -92,7 +92,7 @@ const App = () => {
     setCartVisible(!cartVisible);
   };
   const handleOrderConfirmation = () => {
-    if (!address || !mobile || cartItems.length === 0) {
+    if (!name || !address || !mobile || cartItems.length === 0) {
       toast.error('Please complete all fields and add items to your cart.');
       return;
     }
@@ -112,14 +112,15 @@ const App = () => {
       .toFixed(2);
   
     const message = `Order Confirmation:
-  Address: ${address}
-  Mobile: ${mobile}
-  Notes: ${notes || 'N/A'}
-  
-  Cart Items:
-  ${cartDetails}
-  
-  Total: RS ${totalPrice}`;
+    Name: ${name}
+    Address: ${address}
+    Mobile: ${mobile}
+    Notes: ${notes || 'N/A'}
+    
+    Cart Items:
+    ${cartDetails}
+    
+    Total: RS ${totalPrice}`;
   
     const whatsappNumber = "918010943543"; // Replace with your WhatsApp number
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
@@ -262,35 +263,35 @@ const App = () => {
             ))}
           </ul>
           <div className="order-details">
-  <div className="form-group">
-    <label htmlFor="name">Name:</label>
-    <input
-      type="text"
-      id="name"
-      value={address} // Keeping the same state for simplicity
-      onChange={(e) => setAddress(e.target.value)}
-      placeholder="Enter your name"
-    />
-  </div>
-  <div className="form-group">
-    <label htmlFor="mobile">Mobile Number:</label>
-    <input
-      type="text"
-      id="mobile"
-      value={mobile}
-      onChange={(e) => setMobile(e.target.value)}
-      placeholder="Enter your mobile number"
-    />
-  </div>
-  <div className="form-group">
-    <label htmlFor="address">Address:</label>
-    <textarea
-      id="address"
-      value={notes} // Keeping the same state for simplicity
-      onChange={(e) => setNotes(e.target.value)}
-      placeholder="Enter your address"
-    />
-  </div>
+          <div className="form-group">
+  <label htmlFor="name">Name:</label>
+  <input
+    type="text"
+    id="name"
+    value={name} // Use name state here
+    onChange={(e) => setName(e.target.value)}
+    placeholder="Enter your name"
+  />
+</div>
+<div className="form-group">
+  <label htmlFor="mobile">Mobile Number:</label>
+  <input
+    type="text"
+    id="mobile"
+    value={mobile}
+    onChange={(e) => setMobile(e.target.value)}
+    placeholder="Enter your mobile number"
+  />
+</div>
+<div className="form-group">
+  <label htmlFor="address">Address:</label>
+  <textarea
+    id="address"
+    value={address} // Use address state here
+    onChange={(e) => setAddress(e.target.value)}
+    placeholder="Enter your address"
+  />
+</div>
   <div className="total-price">
     <h4>
       Total: RS{' '}

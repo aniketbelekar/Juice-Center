@@ -1,4 +1,5 @@
 /* Navbar Container */
+/* Navbar Container */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -7,12 +8,14 @@
   background-color: #eff3e9; /* Light, natural background */
   color: #63854c; /* Soft green text */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  margin: 1rem;
-  border-radius: 10px;
-  position: relative;
-  z-index: 10; /* Ensure navbar stays on top */
+  margin: 0; /* Remove margin to avoid displacement when sticky */
+  border-radius: 0; /* Optional: Remove border radius for full-width sticky effect */
+  position: sticky;
+  top: 0; /* Sticks the navbar to the top of the viewport */
+  z-index: 1000; /* Ensure navbar stays on top of other elements */
   font-family: 'Poppins', sans-serif; /* Clean and modern font */
 }
+
 
 /* Navbar Logo */
 .navbar-logo h1 {

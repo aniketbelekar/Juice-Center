@@ -16,11 +16,13 @@ import Free from'./Free'
 
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
   const [cartVisible, setCartVisible] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   // Form states
+  const [menuVisible, setMenuVisible] = useState(false); // Add menuVisible state
   const [address, setAddress] = useState('');
   const [mobile, setMobile] = useState('');
   const [notes, setNotes] = useState('');
@@ -31,10 +33,16 @@ const App = () => {
   // Reference for Pricing section
   const pricingRef = useRef(null);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Loader visible for 2 seconds
+    return () => clearTimeout(timer);
+  }, []);
+
   // Reset scroll position on initial render
   useEffect(() => {
     window.scrollTo(0, 0);
-
     const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
     if (savedCartItems) {
       setCartItems(savedCartItems);
@@ -46,6 +54,18 @@ const App = () => {
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
   }, [cartItems]);
+
+  // Loader JSX
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <img src="src/Images/icons8-sugarcane-48.png" alt="Loading..." className="loader-image" />
+        <p>Loading, please wait...</p>
+      </div>
+    );
+  }
+  
+  
 
   const scrollToPricing = () => {
     pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -90,8 +110,14 @@ const App = () => {
     toast.success(`${name} has been removed from your cart!`);
   };
 
+  
+  const toggleMenuVisibility = () => {
+    setMenuVisible(!menuVisible); // Toggle the menu visibility
+  };
+  
   const toggleCartVisibility = () => {
     setCartVisible(!cartVisible);
+    setMenuVisible(false); // Close the menu when the cart is opened
   };
   const handleOrderConfirmation = () => {
     if (!name || !address || !mobile || cartItems.length === 0) {

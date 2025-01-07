@@ -4,7 +4,7 @@ import './Pricing.css';
 const Pricing = ({ addToCart }) => {
   const juices = [
     { 
-      name: "Fresh Sugar Cane Juice with Ginger,Lemon,Mint ", 
+      name: " SugarCane Juice with Ginger,Lemon,Mint ", 
       price: "RS 60/LT", 
       description: "Freshly pressed sugar cane juice with a Mint of lime.",
       image: "src/Images/mint juice.jpg" // Add image path here

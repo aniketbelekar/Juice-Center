@@ -45,19 +45,20 @@
 /* Video Styling */
 .hero-video {
   position: relative;
-  width: 45%; /* Set video width */
-  height: auto; /* Maintain aspect ratio */
-  z-index: 1; /* Ensure video stays behind text */
+  width: 40%; /* Adjust this value for your layout */
+  height: auto; /* Ensure the height is dynamic */
+  z-index: 1;
   border-radius: 20px;
-  overflow: hidden; /* Ensure no overflow */
+  overflow: hidden;
 }
 
 .hero-video video {
   width: 100%; /* Fit container width */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: cover;
+  height: 100%; /* Fit container height */
+  object-fit: contain; /* Ensure the entire video is visible */
   border-radius: 20px;
 }
+
 
 /* Responsive Design */
 @media (max-width: 1024px) {

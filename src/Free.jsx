@@ -6,7 +6,9 @@ const Home = () => {
     <div>
       {/* Free Delivery Banner */}
       <div className="free-delivery-banner">
+      🥳 Newly launch 💗
         🎉 Free Delivery Available 🎉
+        Upto- 2km
       </div>
 
       {/* Hero Section */}

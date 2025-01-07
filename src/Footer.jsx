@@ -37,7 +37,7 @@ const Footer = () => {
 
       {/* Footer Bottom Section */}
       <div className="footer-bottom">
-        <p>&copy; 2024 . All Rights Reserved.</p>
+        <p>&copy; 2025 . All Rights Reserved. Made by Aniket</p>
       </div>
     </footer>
   );

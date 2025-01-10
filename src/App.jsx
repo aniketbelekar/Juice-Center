@@ -1,28 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Navbar from './Navbar';
 import HeroSection from './Hero';
-import Pricing from './Priceing'; // Fixed the import spelling here
+import Pricing from './Priceing';
 import BestSellerJuice from './SellerJuice';
 import Benefits from './Benifits';
-import ContactSection from './ContactSection';
-import ShopLocation from './ShopLocation';
 import Footer from './Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
-import Home from './Home';
-import Free from'./Free'
-
+import Free from './Free';
+import loaderImage from './Images/icons8-sugarcane-48.png';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
   const [cartVisible, setCartVisible] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
-
-  // Form states
-  const [menuVisible, setMenuVisible] = useState(false); // Add menuVisible state
   const [address, setAddress] = useState('');
   const [mobile, setMobile] = useState('');
   const [notes, setNotes] = useState('');
@@ -30,42 +24,36 @@ const App = () => {
   const [mapVisible, setMapVisible] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [name, setName] = useState('');
-  // Reference for Pricing section
   const pricingRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000); // Loader visible for 2 seconds
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Reset scroll position on initial render
   useEffect(() => {
     window.scrollTo(0, 0);
-    const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
-    if (savedCartItems) {
-      setCartItems(savedCartItems);
+    try {
+      const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
+      if (savedCartItems) {
+        setCartItems(savedCartItems);
+      }
+    } catch (error) {
+      console.error('Failed to load cart items from localStorage:', error);
     }
   }, []);
 
   useEffect(() => {
-    if (cartItems.length > 0) {
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    try {
+      if (cartItems.length > 0) {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      }
+    } catch (error) {
+      console.error('Failed to save cart items to localStorage:', error);
     }
   }, [cartItems]);
-
-  // Loader JSX
-  if (loading) {
-    return (
-      <div className="loader-container">
-        <img src="src/Images/icons8-sugarcane-48.png" alt="Loading..." className="loader-image" />
-        <p>Loading, please wait...</p>
-      </div>
-    );
-  }
-  
-  
 
   const scrollToPricing = () => {
     pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -110,27 +98,39 @@ const App = () => {
     toast.success(`${name} has been removed from your cart!`);
   };
 
-  
-  const toggleMenuVisibility = () => {
-    setMenuVisible(!menuVisible); // Toggle the menu visibility
-  };
-  
   const toggleCartVisibility = () => {
     setCartVisible(!cartVisible);
-    setMenuVisible(false); // Close the menu when the cart is opened
   };
+
+  const validateInputs = () => {
+    if (!name.trim()) {
+      toast.error('Name cannot be empty.');
+      return false;
+    }
+    const mobileRegex = /^[6-9]\d{9}$/;
+    if (!mobileRegex.test(mobile)) {
+      toast.error('Invalid mobile number.');
+      return false;
+    }
+    if (!address.trim()) {
+      toast.error('Address cannot be empty.');
+      return false;
+    }
+    return true;
+  };
+
   const handleOrderConfirmation = () => {
-    if (!name || !address || !mobile || cartItems.length === 0) {
+    if (!validateInputs() || cartItems.length === 0) {
       toast.error('Please complete all fields and add items to your cart.');
       return;
     }
-  
+
     const cartDetails = cartItems
       .map(
         (item) => `${item.name} (Qty: ${item.quantity}, Price: ${item.price})`
       )
       .join('\n');
-  
+
     const totalPrice = cartItems
       .reduce(
         (total, item) =>
@@ -138,36 +138,27 @@ const App = () => {
         0
       )
       .toFixed(2);
-  
+
     const message = `Order Confirmation:
     Name: ${name}
     Address: ${address}
     Mobile: ${mobile}
     Notes: ${notes || 'N/A'}
-    
+
     Cart Items:
     ${cartDetails}
-    
+
     Total: RS ${totalPrice}`;
-  
-    const whatsappNumber = "918010943543"; // Replace with your WhatsApp number
+
+    const whatsappNumber = '918010943543';
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
       message
     )}`;
-  
-    // Log the URL for debugging
-    console.log(whatsappURL);
-  
-    // Redirect to WhatsApp
+
     window.open(whatsappURL, '_blank');
-  
-    // Clear cart
     setOrderConfirmed(true);
     setCartItems([]);
   };
-  
-  
-  
 
   const shareLocation = () => {
     if (navigator.geolocation) {
@@ -178,7 +169,19 @@ const App = () => {
           setMapVisible(true);
         },
         (error) => {
-          toast.error('Unable to retrieve your location.');
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              toast.error('Location access denied. Please allow location access.');
+              break;
+            case error.POSITION_UNAVAILABLE:
+              toast.error('Location information is unavailable.');
+              break;
+            case error.TIMEOUT:
+              toast.error('Request to get location timed out.');
+              break;
+            default:
+              toast.error('An unknown error occurred while retrieving location.');
+          }
         }
       );
     } else {
@@ -202,6 +205,15 @@ const App = () => {
     });
   };
 
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <img src={loaderImage} alt="Loading..." className="loader-image" />
+        <p>Loading, please wait...</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Free />
@@ -216,8 +228,6 @@ const App = () => {
         <Pricing addToCart={addToCart} />
       </div>
       <Benefits />
-      {/* <ShopLocation /> */}
-      {/* <ContactSection /> */}
       <Footer />
 
       <ToastContainer
@@ -291,52 +301,51 @@ const App = () => {
             ))}
           </ul>
           <div className="order-details">
-          <div className="form-group">
-  <label htmlFor="name">Name:</label>
-  <input
-    type="text"
-    id="name"
-    value={name} // Use name state here
-    onChange={(e) => setName(e.target.value)}
-    placeholder="Enter your name"
-  />
-</div>
-<div className="form-group">
-  <label htmlFor="mobile">Mobile Number:</label>
-  <input
-    type="text"
-    id="mobile"
-    value={mobile}
-    onChange={(e) => setMobile(e.target.value)}
-    placeholder="Enter your mobile number"
-  />
-</div>
-<div className="form-group">
-  <label htmlFor="address">Address:</label>
-  <textarea
-    id="address"
-    value={address} // Use address state here
-    onChange={(e) => setAddress(e.target.value)}
-    placeholder="Enter your address"
-  />
-</div>
-  <div className="total-price">
-    <h4>
-      Total: RS{' '}
-      {cartItems
-        .reduce(
-          (total, item) =>
-            total + parseFloat(item.price.split(' ')[1]) * item.quantity,
-          0
-        )
-        .toFixed(2)}
-    </h4>
-  </div>
-  <button className="order-confirm-button" onClick={handleOrderConfirmation}>
-    Confirm Order
-  </button>
-</div>
-
+            <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="mobile">Mobile Number:</label>
+              <input
+                type="text"
+                id="mobile"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                placeholder="Enter your mobile number"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="address">Address:</label>
+              <textarea
+                id="address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Enter your address"
+              />
+            </div>
+            <div className="total-price">
+              <h4>
+                Total: RS{' '}
+                {cartItems
+                  .reduce(
+                    (total, item) =>
+                      total + parseFloat(item.price.split(' ')[1]) * item.quantity,
+                    0
+                  )
+                  .toFixed(2)}
+              </h4>
+            </div>
+            <button className="order-confirm-button" onClick={handleOrderConfirmation}>
+              Confirm Order
+            </button>
+          </div>
         </div>
       )}
 
@@ -347,9 +356,7 @@ const App = () => {
         </div>
       )}
     </div>
-    
   );
 };
-
 
 export default App;

@@ -1,37 +1,53 @@
 /* Free Delivery Banner Animation */
 .free-delivery-banner {
-    background-color:#4a752c;
-    color: white;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: 400;
-    padding: 1rem;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    animation: slideDown 1s ease-in-out, float 3s ease-in-out infinite;
+  background-color: #4a752c;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100; /* Ensures it stays above other elements */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.8s ease-out, float 3s ease-in-out infinite;
+}
+
+/* Slide-down animation when the banner appears */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
   }
-  
-  @keyframes slideDown {
-    from {
-      transform: translateY(-100%);
-    }
-    to {
-      transform: translateY(0);
-    }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
-  
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
+}
+
+/* Gentle floating effect for emphasis */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
   }
-  
-  /* Additional Animation for Hero Section */
-  
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Responsive font-size adjustments for smaller screens */
+@media (max-width: 768px) {
+  .free-delivery-banner {
+    font-size: 1.2rem;
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .free-delivery-banner {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+}

@@ -140,11 +140,13 @@
 
   .price {
     font-size: 1.4em;
+    
   }
 
   .order-btn {
     font-size: 0.85rem;
     padding: 8px 16px;
+    margin-top: 10px;
   }
 }
 

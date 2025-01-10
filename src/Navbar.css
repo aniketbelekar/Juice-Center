@@ -1,32 +1,47 @@
-/* Navbar Container */
+/* General Styles */
+body, html {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  padding-top: 80px; /* Prevent horizontal scrolling */
+}
+
 /* Navbar Container */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  height: 77px;
   background-color: #eff3e9; /* Light, natural background */
   color: #63854c; /* Soft green text */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  margin: 0; /* Remove margin to avoid displacement when sticky */
-  border-radius: 0; /* Optional: Remove border radius for full-width sticky effect */
-  position: sticky;
-  top: 0; /* Sticks the navbar to the top of the viewport */
-  z-index: 1000; /* Ensure navbar stays on top of other elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for better visibility */
+  position: fixed; /* Fixed positioning */
+  top: 0; /* Fix it to the top of the viewport */
+  left: 0; /* Ensure it spans from the left */
+  width: 100%; /* Full width */
+  z-index: 1000; /* Ensure it's above other elements */
   font-family: 'Poppins', sans-serif; /* Clean and modern font */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth effects */
+}
+
+/* Add styles for when the navbar is scrolled */
+.navbar.scrolled {
+  background-color: #e0ebd9; /* Slightly darker background */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
 }
 
 
-/* Navbar Logo */
+
+
 .navbar-logo h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-family: 'Maven Pro', sans-serif; /* Stylized and decorative font */
   font-weight: 700;
   color: #4a752c; /* Slightly darker green */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+  text-shadow: 2px 2px 5px   rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
   letter-spacing: 1px;
   text-transform: uppercase;
-  padding: 0.2rem;
+  padding: 2rem;
   transition: color 0.3s ease;
 }
 
@@ -38,9 +53,14 @@
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  justify-content: space-between; /* Distributes items evenly */
+  align-items: center; /* Aligns items vertically */
+  gap: 1.5rem; /* Adjusts spacing between items */
+  margin: 28px; /* Removes default margin */
+  padding: 0; /* Removes default padding */
   transition: all 0.3s ease;
 }
+
 
 .navbar-links li a {
   color: #4a4a4a; /* Neutral dark gray for links */
@@ -149,6 +169,7 @@
   font-size: 2rem;
   cursor: pointer;
   z-index: 10;
+  margin-right: 20px;
 }
 
 .hamburger:focus {
@@ -161,7 +182,7 @@
     flex-direction: row;
     justify-content: space-between; /* Ensures space between logo and hamburger */
     align-items: center;
-    padding: 1rem;
+    padding: 0rem;
   }
 
   .hamburger {

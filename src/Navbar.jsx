@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll'; // For smooth scrolling
 import './Navbar.css';
 
 const Navbar = ({ cartItems, toggleCartVisibility }) => {
   const [menuOpen, setMenuOpen] = useState(false); // Controls hamburger menu
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Controls popup visibility
+  const [isScrolled, setIsScrolled] = useState(false); // Tracks if the navbar is scrolled
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -16,14 +17,29 @@ const Navbar = ({ cartItems, toggleCartVisibility }) => {
 
   const showPopup = () => {
     setIsPopupOpen(true); // Show confirmation popup
+    setTimeout(() => {
+      closePopup(); // Auto-close popup after 3 seconds
+    }, 3000);
   };
 
   const closePopup = () => {
     setIsPopupOpen(false); // Close the popup
   };
 
+  // Detect scroll for sticky effects
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50); // Add shadow if scrolled 50px
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       {/* Logo */}
       <div className="navbar-logo">
         <h1>Sugarcane Delight</h1>

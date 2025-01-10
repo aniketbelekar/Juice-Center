@@ -1,32 +1,33 @@
+/* Base Styling */
 .hero-section {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
-  background-color: #EFF3E9; /* Light background color */
+  background-color: #eff3e9;
   position: relative;
-  height: 100vh; /* Full height */
-  border-radius: 10px; /* Rounded corners */
-  overflow: hidden; /* Ensure no overflow issues */
+  height: 100vh;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-/* Text Content Styling */
 .hero-text {
-  max-width: 50%; /* Take half of the screen */
+  max-width: 50%;
   z-index: 2;
+  animation: fade-in 1.5s ease-in-out forwards;
 }
 
 .hero-text h1 {
-  font-family: 'Maven Pro', sans-serif; /* Use Maven Pro font */
-  font-size: 3rem; /* Larger for larger screens */
-  color: #4a752c; /* Dark green */
+  font-family: 'Maven Pro', sans-serif;
+  font-size: 3rem;
+  color: #4a752c;
   margin-bottom: 1rem;
 }
 
 .hero-text p {
-  font-size: 1.2rem; /* Slightly larger font size */
-  color: #4b4b4b; /* Dark gray */
+  font-size: 1.2rem;
+  color: #4b4b4b;
   line-height: 1.6;
   margin-bottom: 1.5rem;
   font-family: 'Readex Pro', sans-serif;
@@ -35,94 +36,122 @@
 .hero-text blockquote p {
   font-size: 1.1rem;
   font-family: 'Exo', sans-serif;
-  color: #af7b1a; /* Red color */
+  color: #af7b1a;
   border-left: 4px solid #ccc;
   padding-left: 1rem;
   margin-top: 1rem;
   font-style: italic;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-/* Video Styling */
+.hero-text blockquote p:hover {
+  transform: translateX(10px);
+  color: #8b5a00;
+}
+
 .hero-video {
   position: relative;
-  width: 40%; /* Adjust this value for your layout */
-  height: auto; /* Ensure the height is dynamic */
+  width: 40%;
+  height: auto;
   z-index: 1;
   border-radius: 20px;
   overflow: hidden;
+  animation: zoom-in 1.5s ease-in-out forwards;
 }
 
 .hero-video video {
-  width: 100%; /* Fit container width */
-  height: 100%; /* Fit container height */
-  object-fit: contain; /* Ensure the entire video is visible */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   border-radius: 20px;
 }
 
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
 
 /* Responsive Design */
 @media (max-width: 1024px) {
   .hero-section {
-    flex-direction: column-reverse; /* Stack video below text */
+    flex-direction: column-reverse;
     text-align: center;
-    height: auto; /* Allow height to adjust dynamically */
+    height: auto;
     padding: 1rem;
   }
 
   .hero-text {
-    max-width: 100%; /* Full width for text */
+    max-width: 100%;
     margin-bottom: 1rem;
   }
 
   .hero-text h1 {
-    font-size: 2.2rem; /* Adjust font size */
+    font-size: 2.2rem;
   }
 
   .hero-text p {
-    font-size: 1rem; /* Adjust font size */
+    font-size: 1rem;
   }
 
   .hero-video {
-    width: 80%; /* Adjust video size */
-    height: 50vh; /* Reduced height */
+    width: 80%;
+    height: 50vh;
   }
 }
 
 @media (max-width: 768px) {
+  /* Apply Zoom Effect to Video */
+  .hero-video {
+    width: 100%;
+    height: 60vh; /* Slightly larger height for a better zoom effect */
+    animation: zoom-in 0.7s ease-in-out forwards;
+  }
+
+  /* Adjust the hero-section to a more compact layout */
   .hero-section {
-    flex-direction: column-reverse; /* Stack video below text */
-    height: auto; /* Adjust height dynamically */
+    flex-direction: column-reverse;
+    padding: 1rem;
+    height: auto;
+    text-align: center;
+  }
+
+  .hero-text {
+    max-width: 100%;
+    margin-bottom: 1rem;
   }
 
   .hero-text h1 {
-    font-size: 1.8rem; /* Adjust for smaller screens */
+    font-size: 2rem;
   }
 
   .hero-text p {
-    font-size: 1rem; /* Adjust font size */
-  }
-
-  .hero-video {
-    width: 90%; /* Increase video width for smaller screens */
-    height: 40vh; /* Further reduce video height */
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-section {
-    padding: 1rem; /* Reduce padding for very small screens */
-  }
-
-  .hero-text h1 {
-    font-size: 1.5rem; /* Smaller font size */
-  }
-
-  .hero-text p {
-    font-size: 0.9rem; /* Smaller font size */
-  }
-
-  .hero-video {
-    width: 100%; /* Full width for video */
-    height: auto; /* Maintain aspect ratio */
+    font-size: 1rem;
   }
 }
